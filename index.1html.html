@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            background-color: #f4a261; /* Sandy brown-like color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #264653; /* Dark teal */
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid #264653;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2a9d8f; /* Teal */
+            box-shadow: 0 0 5px rgba(42, 157, 143, 0.7);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2a9d8f; /* Teal */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1f776c; /* Darker teal */
+        }
+
+        img {
+            margin-top: 20px;
+            border: 5px solid #264653;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #264653;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>UI QR Code Basic Generator</h2>
+
+    <div class="container">
+        <!-- The input field where the user can enter the text or URL to encode in the QR code -->
+        <input type="text" id="qr-code-value" placeholder="Enter text or URL">
+        
+        <!-- The button that will trigger the QR code generation -->
+        <button onclick="generateQRCode()">Generate QR Code</button>
+        
+        <!-- The img element where the QR code image will be displayed -->
+        <img id="qr-code-image" alt="QR Code" width="400" height="400">
+    </div>
+
+    <!-- Include the QRious library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+    <script>
+        function generateQRCode() {
+            // Get the value entered by the user
+            const value = document.getElementById('qr-code-value').value;
+
+            // Create a new QR code object
+            const qrCode = new QRious({
+                value: value, // The text or URL to encode in the QR code
+                size: 400,    // The size of the QR code in pixels
+                level: 'H'    // The error correction level of the QR code
+            });
+
+            // Display the QR code image on the webpage
+            document.getElementById('qr-code-image').src = qrCode.toDataURL();
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
